@@ -1,0 +1,19 @@
+.container {
+	width: 430px;
+}
+.buttons {	  
+  display: flex;
+  flex-wrap: wrap;
+	gap: 10px;
+}
+
+.display {
+	font-size: xx-large;
+	text-align: right;
+}
+
+button {
+  width: 100px;
+  height: 100px;
+  font-size: xx-large;
+}
