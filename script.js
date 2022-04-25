@@ -1,5 +1,21 @@
+function addDigitToDisplay(num) {
+  displayNum = getNumber();
+  const display = getDisplayReference();
+
+  //Check if there is a number on the display
+  if(typeof(displayNum) === 'number') {
+    display.textContent += num;
+  } else {
+    display.textContent = num;
+  }
+}
+
+function getDisplayReference() {
+  return document.querySelector('.display');
+}
+
 function getNumber() {
-  const display = document.querySelector('.display');
+  const display = getDisplayReference();
   return parseInt(display.textContent);
 }
 
