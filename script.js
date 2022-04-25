@@ -1,4 +1,13 @@
-function ActivateDigitButtons() {
+function activateClearButton() {
+  clear = document.querySelector('#clear');
+
+  clear.addEventListener('click', () => {
+    const display = getDisplayReference();
+    display.textContent = "";
+  });
+}
+
+function activateDigitButtons() {
   const buttons = document.querySelectorAll('.digits');
 
   buttons.forEach(function(button) {
@@ -68,4 +77,5 @@ function divide(num1, num2) {
   return num1 / num2;
 }
 
-ActivateDigitButtons();
+activateDigitButtons();
+activateClearButton();
