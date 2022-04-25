@@ -18,6 +18,8 @@ body {
 }
 
 .display {
+  width: 443px;
+  height: 37px;
   margin-bottom: 10px;
 	font-size: xx-large;
   font-family: 'Courier New', Courier, monospace;
