@@ -1,3 +1,13 @@
+function ActivateDigitButtons() {
+  const buttons = document.querySelectorAll('.digits');
+
+  buttons.forEach(function(button) {
+    button.addEventListener('click', function() {
+      addDigitToDisplay(button.textContent);
+    });
+  });
+}
+
 function addDigitToDisplay(num) {
   displayNum = getNumber();
   const display = getDisplayReference();
@@ -57,3 +67,5 @@ function divide(num1, num2) {
   }
   return num1 / num2;
 }
+
+ActivateDigitButtons();
