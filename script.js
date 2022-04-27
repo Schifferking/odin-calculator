@@ -1,17 +1,66 @@
+function activateOperatorButtons(){  
+  let result = 0;
+  buttons = document.querySelectorAll('.operator');
+  
+  buttons.forEach(function(button) {
+    button.addEventListener('click', function() {    
+      if(numberCaptured) {
+        display = getDisplayReference();
+        //check if there is a number stored
+        if(firstNum === undefined) {
+          firstNum = parseInt(display.textContent);
+          operatorPressed = button.textContent;
+        } else if(secondNum === undefined){
+          //store the second number
+          secondNum = parseInt(display.textContent);
+          display.textContent = '' ;
+
+          //Do the operation
+          result = operate(operatorPressed, firstNum, secondNum);
+          addDigitToDisplay(result);
+          
+          //store the result in the first number and delete the second value
+          firstNum = result;
+          secondNum = undefined;
+
+          //Store the new operator
+          operatorPressed = button.textContent;
+        }
+        numberCaptured = false;
+      }
+    });
+  });
+
+  //For equals function
+  //First check if there are two numbers stored and an operation
+  // if there is execute operate
+  // display the result on the display
+  //if there are not then do 'nothing'
+}
+
 function activateClearButton() {
   clear = document.querySelector('#clear');
 
   clear.addEventListener('click', () => {
     const display = getDisplayReference();
-    display.textContent = "";
+    display.textContent = "0";
+    firstNum = undefined;
+    secondNum = undefined;
+    operatorPressed = undefined;
+    numberCaptured = false;
   });
 }
 
 function activateDigitButtons() {
   const buttons = document.querySelectorAll('.digits');
 
-  buttons.forEach(function(button) {
+  buttons.forEach(function(button) {    
     button.addEventListener('click', function() {
+      if(!numberCaptured) {
+        const display = getDisplayReference();
+        display.textContent = '';
+        numberCaptured = true;
+      }
       addDigitToDisplay(button.textContent);
     });
   });
@@ -41,20 +90,16 @@ function getNumber() {
 function operate(operator, num1, num2) {
   switch(operator) {
     case '+':
-      add(num1, num2);
-    break;
+      return add(num1, num2);
 
     case '-':
-      substract(num1, num2);
-    break;
+      return substract(num1, num2);
 
-    case '*':
-      multiply(num1, num2);
-    break;
+    case 'x':
+      return multiply(num1, num2);
 
-    case '/':
-      divide(num1, num2);
-    break;
+    case '÷':
+      return divide(num1, num2);
   }
 }
 
@@ -77,5 +122,10 @@ function divide(num1, num2) {
   return num1 / num2;
 }
 
+let firstNum;
+let secondNum;
+let operatorPressed;
+let numberCaptured = false;
 activateDigitButtons();
+activateOperatorButtons();
 activateClearButton();
