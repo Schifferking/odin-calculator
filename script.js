@@ -8,13 +8,14 @@ function activatEqualsButton() {
     }
 
     //First check if there are two numbers stored and an operation
-    if(firstNum && secondNum && operatorPressed) {      
+    if(firstNum && secondNum && operatorPressed) {            
       let result = operate(operatorPressed, firstNum, secondNum);
       if(!Number.isSafeInteger(result)) {
         result = result.toFixed(2);
       }
-      firstNum = result;
       display.textContent = result;
+      firstNum = result;
+      secondNum = undefined
       numberCaptured = false;
       operatorPressed = undefined;
     }  
