@@ -27,6 +27,18 @@ body {
   background-color: cornflowerblue;
 }
 
+.operator, #equals {
+  background-color: deepskyblue;
+}
+
+#clear {
+  background-color: darkred;
+}
+
+.digits {
+  background-color: aqua;
+}
+
 button {
   width: 100px;
   height: 100px;
