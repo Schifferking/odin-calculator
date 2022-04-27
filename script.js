@@ -15,7 +15,7 @@ function activatEqualsButton() {
       }
       display.textContent = result;
       firstNum = result;
-      secondNum = undefined
+      secondNum = undefined;
       numberCaptured = false;
       operatorPressed = undefined;
     }  
