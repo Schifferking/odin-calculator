@@ -1,3 +1,10 @@
+function activateButtons() {
+  activateDigitButtons();
+  activateOperatorButtons();
+  activateClearButton();
+  activatEqualsButton();
+}
+
 function activatEqualsButton() {
   button = document.querySelector('#equals');
   display = getDisplayReference();
@@ -151,7 +158,4 @@ let firstNum;
 let secondNum;
 let operatorPressed;
 let numberCaptured = false;
-activateDigitButtons();
-activateOperatorButtons();
-activateClearButton();
-activatEqualsButton();
+activateButtons();
