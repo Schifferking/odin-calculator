@@ -1,9 +1,36 @@
+function activatEqualsButton() {
+  button = document.querySelector('#equals');
+  display = getDisplayReference();
+
+  button.addEventListener('click', () => {
+    if(numberCaptured) {
+      secondNum = parseInt(display.textContent);
+    }
+
+    //First check if there are two numbers stored and an operation
+    if(firstNum && secondNum && operatorPressed) {      
+      let result = operate(operatorPressed, firstNum, secondNum);
+      if(!Number.isSafeInteger(result)) {
+        result = result.toFixed(2);
+      }
+      firstNum = result;
+      display.textContent = result;
+      numberCaptured = false;
+      operatorPressed = undefined;
+    }  
+  });
+}
+
 function activateOperatorButtons(){  
   let result = 0;
   buttons = document.querySelectorAll('.operator');
   
   buttons.forEach(function(button) {
-    button.addEventListener('click', function() {    
+    button.addEventListener('click', function() { 
+      if(operatorPressed === undefined) {
+        operatorPressed = button.textContent;
+      }
+
       if(numberCaptured) {
         display = getDisplayReference();
         //check if there is a number stored
@@ -17,6 +44,9 @@ function activateOperatorButtons(){
 
           //Do the operation
           result = operate(operatorPressed, firstNum, secondNum);
+          if(!Number.isSafeInteger(result)) {
+            result = result.toFixed(2);
+          }
           addDigitToDisplay(result);
           
           //store the result in the first number and delete the second value
@@ -30,12 +60,6 @@ function activateOperatorButtons(){
       }
     });
   });
-
-  //For equals function
-  //First check if there are two numbers stored and an operation
-  // if there is execute operate
-  // display the result on the display
-  //if there are not then do 'nothing'
 }
 
 function activateClearButton() {
@@ -129,3 +153,4 @@ let numberCaptured = false;
 activateDigitButtons();
 activateOperatorButtons();
 activateClearButton();
+activatEqualsButton();
